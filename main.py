@@ -21,13 +21,13 @@ def display_goodby():
 
 WORDS_TO_GUESS = [
     "Apple",
-    "Blue",
+    "Blueberry",
     "House",
-    "Run",
-    "Smart",
-    "Table",
-    "Window",
-    "Happy",
+    "Runtime",
+    "Smartest",
+    "Tablecloth",
+    "Windows",
+    "Happiness",
     "Cloud",
     "Bread"
 ]
