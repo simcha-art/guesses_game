@@ -38,5 +38,17 @@ def choose_random_word():
     return WORDS_TO_GUESS[i]
 
 
+def display_word_symbolicly(word:str, indexes = None):
+    symbols = ["*"] * len(word)
+    if indexes:
+        for i in indexes:
+            symbols[int(i)] = word[int(i)]
+    print("".join(symbols))
+
+display_word_symbolicly("apple", "12")
+
+
+
+
 
     
