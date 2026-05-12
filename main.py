@@ -34,7 +34,7 @@ WORDS_TO_GUESS = [
 
 
 def choose_random_word():
-    i = randint(0, 9)
+    i = randint(0, len(WORDS_TO_GUESS) - 1)
     return WORDS_TO_GUESS[i]
 
 
