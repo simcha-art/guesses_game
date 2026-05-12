@@ -37,16 +37,18 @@ def choose_random_word():
     i = randint(0, len(WORDS_TO_GUESS) - 1)
     return WORDS_TO_GUESS[i]
 
-
-def display_word_symbolicly(word:str, indexes = None):
-    symbols = ["*"] * len(word)
+def word_by_guesses(word:str, indexes = None):
+    guested = ["*"] * len(word)
     if indexes:
         for i in indexes:
-            symbols[int(i)] = word[int(i)]
-    print("".join(symbols))
+            guested[int(i)] = word[int(i)]
+    return "".join(guested)
 
-display_word_symbolicly("apple", "12")
 
+
+def display_word_symbolicly(guessed_word: str):
+    message = "-" * len(guessed_word)
+    
 
 
 
