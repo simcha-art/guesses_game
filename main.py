@@ -2,11 +2,10 @@ from random import randint
 
 
 def display_menu():
-    message = "GUESSES GAME/n" \
-    "You should guess the letters to fill all empty places in the word." \
-    "You have limited number of rong guesses" 
-    print(message)
-
+    game_name = "GUESSES GAME" 
+    display_beautifully(game_name)
+    game_rules = "You should guess the letters to fill all empty places in the word. You have limited number of rong guesses" 
+    display_beautifully(game_rules)
 
 def is_user_start_playing():
     message = "If you want to play, click 'Y', else click 'N': "
@@ -90,8 +89,8 @@ def display_success():
     display_beautifully(message)
 
 
-def display_loss():
-    message = "Sorry, You missed it!"
+def display_loss(real_word):
+    message = f"Sorry, You missed it!, the word was '{real_word}'"
     display_beautifully(message)
 
 
@@ -102,7 +101,7 @@ def main():
         display_goodby()
         return
     
-    real_word = choose_random_word()
+    real_word = choose_random_word().lower()
     guessed_word = "*" * len(real_word)
     number_of_guesses = 10
 
@@ -114,16 +113,20 @@ def main():
         if is_correct_guess(real_word, guess):
             guessed_word = update_simbols_word(guessed_word, real_word, guess)
             if is_succeed(guessed_word):
+                display_beautifully(guessed_word)
                 display_success()
                 end = True
 
         else:
             number_of_guesses -= 1
             if number_of_guesses == 0:
-                display_loss()
+                display_loss(real_word)
                 end = True
     
     display_goodby()
+
+if __name__ == "__main__":
+    main()
             
 
 
