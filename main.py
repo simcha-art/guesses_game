@@ -73,4 +73,8 @@ def user_guess():
     return guess
 
 
+def is_correct_guess(word, guess):
+    return guess in word
+
+
     
