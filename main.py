@@ -42,12 +42,6 @@ def choose_random_word():
     i = randint(0, len(WORDS_TO_GUESS) - 1)
     return WORDS_TO_GUESS[i]
 
-def word_by_guesses(word:str, indexes = None):
-    guested = ["*"] * len(word)
-    if indexes:
-        for i in indexes:
-            guested[int(i)] = word[int(i)]
-    return "".join(guested)
 
 
 number_of_guesses = 10
@@ -77,4 +71,21 @@ def is_correct_guess(word, guess):
     return guess in word
 
 
-    
+def update_simbols_word(simbols_word, real_word, guess):
+    simbols_word = list(simbols_word)
+    for i in range(len(real_word)):
+        if guess == real_word[i]:
+            simbols_word[i] = real_word[i]
+    return "".join(simbols_word)
+
+
+def is_succeed(guessed_word):
+    if "*" in guessed_word:
+        return False
+    return True
+
+
+def display_success():
+    message = "Congraduation! You have guesed the word!"
+    display_beautifully(message)
+
