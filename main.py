@@ -89,3 +89,41 @@ def display_success():
     message = "Congraduation! You have guesed the word!"
     display_beautifully(message)
 
+
+def display_loss():
+    message = "Sorry, You missed it!"
+    display_beautifully(message)
+
+
+def main():
+    display_menu()
+    start = is_user_start_playing()
+    if not start:
+        display_goodby()
+        return
+    
+    real_word = choose_random_word()
+    guessed_word = "*" * len(real_word)
+    number_of_guesses = 10
+
+    end = False
+    while not end:
+        display_state_of_game(guessed_word, number_of_guesses)
+        guess = user_guess()
+
+        if is_correct_guess(real_word, guess):
+            guessed_word = update_simbols_word(guessed_word, real_word, guess)
+            if is_succeed(guessed_word):
+                display_success()
+                end = True
+
+        else:
+            number_of_guesses -= 1
+            if number_of_guesses == 0:
+                display_loss()
+                end = True
+    
+    display_goodby()
+            
+
+
