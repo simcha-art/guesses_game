@@ -22,8 +22,7 @@ def display_beautifully(msg):
 
 def display_goodby():
     message = "See you next time!"
-    print(message)
-
+    display_beautifully(message)
 
 WORDS_TO_GUESS = [
     "Apple",
@@ -53,8 +52,9 @@ def word_by_guesses(word:str, indexes = None):
 
 
 def display_word_symbolicly(guessed_word: str):
-    message = "-" * len(guessed_word)
-    
+    message = f"Guessed_word: {guessed_word}"
+    display_beautifully(message)
+
 
 
 
