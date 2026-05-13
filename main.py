@@ -24,7 +24,7 @@ def display_menu():
     display_beautifully(game_rules)
 
 def is_user_start_playing():
-    message = "If you want to play, click 'Y', else click 'N': "
+    message = "If you want to play, click 'Y', else click any key: "
     choice = input(message).upper() == "Y"
     return choice
 
@@ -61,8 +61,8 @@ def choose_random_word(level: str):
 
 
 
-def display_state_of_game(guessed_word: str, guesses_number:int):
-    message = f"Guessed_word:    {guessed_word}            guesses remained:     {guesses_number}"
+def display_state_of_game(guessed_word: str, guesses_number:int, wrong_guesses: list):
+    message = f"Guessed_word:    {guessed_word}     guesses remained:     {guesses_number}      wrong guesses: {wrong_guesses}"
     display_beautifully(message)
 
 
@@ -121,10 +121,11 @@ def main():
     real_word = choose_random_word(level).lower()
     guessed_word = "*" * len(real_word)
     number_of_guesses = MAX_GUESSES[level]
+    wrong_guesses = []
 
     end = False
     while not end:
-        display_state_of_game(guessed_word, number_of_guesses)
+        display_state_of_game(guessed_word, number_of_guesses, wrong_guesses)
         guess = user_guess()
 
         if is_correct_guess(real_word, guess):
@@ -135,6 +136,8 @@ def main():
                 end = True
 
         else:
+            if guess not in wrong_guesses:
+                wrong_guesses.append(guess)
             number_of_guesses -= 1
             if number_of_guesses == 0:
                 display_loss(real_word)
