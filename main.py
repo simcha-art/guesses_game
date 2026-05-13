@@ -1,36 +1,21 @@
-from random import randint
+import random
 
-
-WORDS_TO_GUESS = [
-    "Watermellon",
-    "Pineapple",
-    "cucumber",
-    "Apple",
-    "Blueberry",
-    "House",
-    "orange",
-    "computer",
-    "people",
-    "Enjoy",
-    "oraganization",
-    "noise",
-    "glasses",
-    "shirt",
-    "pencil",
-    "banana",
-    "drive",
-    "footer",
-    "complicated",
-    "Runtime",
-    "Smartest",
-    "Tablecloth",
-    "Windows",
-    "Happiness",
-    "Cloud",
-    "Bread"
+DIFFICULT_WORDS = [
+    "Cat", "Dog", "Sun", "Sky", "Tea", 
+    "Ice", "Pen", "Box", "Map", "Joy"
 ]
 
-MAX_GUESSES = 10
+MEDIUM_WORDS = [
+    "Apple", "Bridge", "Cloud", "Forest", "Garden", 
+    "Island", "Planet", "Silver", "Window", "Yellow"
+]
+
+EASY_WORDS = [
+    "Adventure", "Beautiful", "Chocolate", "Elephant", "Hospital", 
+    "Mountain", "Notebook", "Question", "Sunshine", "Umbrella"
+]
+
+MAX_GUESSES = {"E": 10, "M": 7, "D": 5}
 
 def display_menu():
     game_name = "GUESSES GAME" 
@@ -54,18 +39,30 @@ def display_goodby():
     message = "See you next time!"
     display_beautifully(message)
 
+def choose_level():
+
+    message = "\n=========================\n"\
+        "Choose level:\n" \
+    "For Easy: press E:\n" \
+    "For medium: press M:\n" \
+    "For difficult: press D:\n:"
+
+    level = ""
+    while not (len(level) == 1 and level in "EMD"):
+        level = input(message).upper()
+    return level
 
 
-def choose_random_word():
-    i = randint(0, len(WORDS_TO_GUESS) - 1)
-    return WORDS_TO_GUESS[i]
-
+def choose_random_word(level: str):
+    words_by_level = {"E": EASY_WORDS, "M": MEDIUM_WORDS, "D": DIFFICULT_WORDS}
+    word = random.choice(words_by_level[level])
+    return word
 
 
 
 
 def display_state_of_game(guessed_word: str, guesses_number:int):
-    message = f"Guessed_word:    {guessed_word},            guesses remained:     {guesses_number}"
+    message = f"Guessed_word:    {guessed_word}            guesses remained:     {guesses_number}"
     display_beautifully(message)
 
 
@@ -118,10 +115,12 @@ def main():
     if not start:
         display_goodby()
         return
+    
+    level = choose_level()
 
-    real_word = choose_random_word().lower()
+    real_word = choose_random_word(level).lower()
     guessed_word = "*" * len(real_word)
-    number_of_guesses = MAX_GUESSES
+    number_of_guesses = MAX_GUESSES[level]
 
     end = False
     while not end:
