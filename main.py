@@ -14,6 +14,12 @@ def is_user_start_playing():
     return choice
 
 
+def display_beautifully(msg):
+    line = "=" * len(msg)
+    beautifull_msg = f"{line} \n{msg} \n{line}"
+    print(beautifull_msg)
+
+
 def display_goodby():
     message = "See you next time!"
     print(message)
