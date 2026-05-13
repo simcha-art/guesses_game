@@ -54,12 +54,23 @@ number_of_guesses = 10
 
 
 def display_state_of_game(guessed_word: str, guesses_number:int):
-    message = f"Guessed_word:    {guessed_word},            guesses remain:     {guesses_number}"
+    message = f"Guessed_word:    {guessed_word},            guesses remained:     {guesses_number}"
     display_beautifully(message)
 
 
-word = word_by_guesses("apple", "34")
-display_state_of_game(word, number_of_guesses)
+def user_guess():
+    def is_valid_input():
+        return len(guess) == 1 and "a" <= guess <= "z"
+    
+
+    guess = ""
+    while not is_valid_input():
+        guess = input("Choose one English letter:\n").lower()
+
+        if not is_valid_input():
+            print("ERROR: INVALID INPUT!")
+
+    return guess
 
 
     
