@@ -50,13 +50,16 @@ def word_by_guesses(word:str, indexes = None):
     return "".join(guested)
 
 
+number_of_guesses = 10
 
-def display_word_symbolicly(guessed_word: str):
-    message = f"Guessed_word: {guessed_word}"
+
+def display_state_of_game(guessed_word: str, guesses_number:int):
+    message = f"Guessed_word:    {guessed_word},            guesses remain:     {guesses_number}"
     display_beautifully(message)
 
 
-
+word = word_by_guesses("apple", "34")
+display_state_of_game(word, number_of_guesses)
 
 
     
